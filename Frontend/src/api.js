@@ -1,19 +1,5 @@
-// ---------------------------------------------------------------------------
-// API contract assumptions — adjust here if your backend differs.
-//
-// POST /files/upload
-//   multipart/form-data, field name "file"
-//   -> any JSON response (filename/id are read defensively, see normalizeUpload)
-//
-// POST /users/query
-//   JSON body: { "query": "<question>" }
-//   -> JSON response. We defensively look for the answer under
-//      answer / response / result / message / data.answer, and for source
-//      chunks under sources / context / citations / chunks.
-// ---------------------------------------------------------------------------
-
-const UPLOAD_URL = "http://localhost:3000/files/upload";
-const QUERY_URL = "http://localhost:3000/users/query";
+const UPLOAD_URL = `${import.meta.env.VITE_BACKEND_URL}/files/upload`;
+const QUERY_URL = `${import.meta.env.VITE_BACKEND_URL}/users/query`;
 
 export function uploadFile(file, onProgress) {
   return new Promise((resolve, reject) => {
